@@ -62,8 +62,6 @@ def agregar_variables(df):
     df_processed = df.copy()
     df_processed['metodo_pago'] = df_processed['metodo_pago'].apply(normalizar_metodo_pago)
 
-    DIAS_POR_MES = 30.4375
-
     # 2. Asegurarse de convertir ambas columnas a formato datetime
     df_processed['fecha_alta'] = pd.to_datetime(df_processed['fecha_alta'])
     df_processed['fecha_corte'] = pd.to_datetime(df_processed['fecha_corte'])
@@ -75,8 +73,8 @@ def agregar_variables(df):
     )
 
     df_processed['meses_hasta_fin_permanencia'] = np.where(
-        df_processed['tipo_contrato'] == 'mensual',0, \
-          (df_processed['fecha_corte'] - df_processed['fecha_alta']).dt.days / DIAS_POR_MES
+        df_processed['tipo_contrato'] == 'mensual', 0,
+        (df_processed['fin_permanencia'] - df_processed['fecha_corte']).dt.days / DIAS_POR_MES,
     )
 
     df_processed['meses_hasta_fin_permanencia'] = (

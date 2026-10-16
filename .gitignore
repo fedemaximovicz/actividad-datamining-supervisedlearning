@@ -1,0 +1,9 @@
+# Entorno virtual
+env/
+.venv/
+
+# Archivos generados por Python, pytest y Jupyter
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/

@@ -110,12 +110,12 @@ class KNNClasificador(ClassifierMixin, BaseEstimator):
                 dist_sq = norm_batch + self.norm_X_train_ - 2 * dot_prod
                 dists[start:end] = np.sqrt(np.maximum(0.0, dist_sq))
             elif metrica == "manhattan":
-                dists[start:end] = np.sum(
-                    np.abs(
-                        X_batch[:, np.newaxis, :] - self.X_[np.newaxis, :, :]
-                    ),
-                    axis=2,
-                )
+                # Se acumula columna por columna: el arreglo intermedio de forma
+                # (lote, n_entrenamiento, n_variables) ocuparía varios GB.
+                dist_lote = np.zeros((end - start, n_train), dtype=float)
+                for j in range(X_batch.shape[1]):
+                    dist_lote += np.abs(X_batch[:, j, np.newaxis] - self.X_[:, j])
+                dists[start:end] = dist_lote
             else:
                 raise ValueError(f"Métrica no soportada: {self.metrica}")
 

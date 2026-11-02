@@ -13,7 +13,8 @@ def quitar_tildes(texto: str) -> str:
     Pista: unicodedata.normalize("NFKD", ...) separa cada letra de su tilde, y
     unicodedata.combining(c) indica si un carácter es una tilde "suelta".
     """
-    raise NotImplementedError("Completar quitar_tildes")
+    return "".join(c for c in unicodedata.normalize("NFKD", texto)
+                   if not unicodedata.combining(c))
 
 
 def limpiar_texto(texto) -> str:
@@ -35,4 +36,14 @@ def limpiar_texto(texto) -> str:
         limpiar_texto("¡Me cobraron $ 15.000 y NO los reconozco!")  -> "me cobraron _monto_ y no los reconozco"
         limpiar_texto("mi DNI es 30.123.456 😡")                     -> "mi dni es _num_"
     """
-    raise NotImplementedError("Completar limpiar_texto")
+    if not isinstance(texto, str):
+        return ""
+    texto = quitar_tildes(texto.lower())
+    texto = re.sub(r"(?:https?://|www\.)\S+", " _url_ ", texto)
+    texto = re.sub(r"[\w.+-]+@[\w.-]+\.[a-z]{2,}", " _email_ ", texto)
+    numero = r"\d+(?:[.,]\d+)*"
+    texto = re.sub(r"(?:\$|\b(?:gs|usd)\.?\s*)(?:\s*)" + numero,
+                   " _monto_ ", texto)
+    texto = re.sub(numero, " _num_ ", texto)
+    texto = re.sub(r"[^a-z_\s]", " ", texto)
+    return " ".join(texto.split())

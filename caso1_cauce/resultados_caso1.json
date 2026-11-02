@@ -1,0 +1,185 @@
+{
+  "modelo_elegido": "Naive Bayes",
+  "limites_asumidos": {
+    "exactitud": 0.85,
+    "f1_macro": 0.85,
+    "cobertura": 0.7,
+    "exactitud_automatica": 0.95,
+    "fraude_perdido": 0.02
+  },
+  "umbrales": {
+    "Naive Bayes": [
+      0.87,
+      1.01
+    ],
+    "KNN": [
+      0.39,
+      1.01
+    ]
+  },
+  "mejores_parametros": {
+    "Naive Bayes": {
+      "modelo__alpha": 0.1,
+      "vec__min_df": 1,
+      "vec__ngram_range": [
+        1,
+        2
+      ]
+    },
+    "KNN": {
+      "modelo__n_neighbors": 15,
+      "modelo__weights": "distance",
+      "vec__ngram_range": [
+        1,
+        2
+      ]
+    }
+  },
+  "historicos": 8200,
+  "deduplicados": 8000,
+  "cortos": 70,
+  "train": 6344,
+  "test": 1586,
+  "coincidencia_sklearn": 1.0,
+  "oof": [
+    {
+      "modelo": "Naive Bayes",
+      "umbral_fraude": 0.87,
+      "umbral_confianza": 1.01,
+      "cobertura": 0.10293190416141236,
+      "exactitud_automatica": 0.9709035222052067,
+      "fraude_perdido": 0.0,
+      "exactitud": 0.9402585119798235,
+      "f1_macro": 0.9354780159288808
+    },
+    {
+      "modelo": "KNN",
+      "umbral_fraude": 0.39,
+      "umbral_confianza": 1.01,
+      "cobertura": 0.09788776796973518,
+      "exactitud_automatica": 0.9710144927536232,
+      "fraude_perdido": 0.0,
+      "exactitud": 0.9337957124842371,
+      "f1_macro": 0.9292386085981755
+    }
+  ],
+  "test_resultados": [
+    {
+      "modelo": "Naive Bayes",
+      "exactitud": 0.9388398486759143,
+      "f1_macro": 0.933968000998459,
+      "cobertura": 0.10403530895334175,
+      "exactitud_automatica": 0.9575757575757575,
+      "fraude_perdido": 0.0
+    },
+    {
+      "modelo": "KNN",
+      "exactitud": 0.9287515762925599,
+      "f1_macro": 0.9262056144532635,
+      "cobertura": 0.09836065573770492,
+      "exactitud_automatica": 0.9551282051282052,
+      "fraude_perdido": 0.0
+    },
+    {
+      "modelo": "Mesa de entrada",
+      "exactitud": 0.8354350567465322,
+      "f1_macro": 0.8237275690718043,
+      "cobertura": 1.0,
+      "exactitud_automatica": 0.8354350567465322,
+      "fraude_perdido": 0.3352272727272727
+    }
+  ],
+  "aceptacion": false,
+  "ic_fraude": [
+    1.734723475976807e-18,
+    0.021361019919751596
+  ],
+  "ic_exactitud": [
+    0.9150289462090594,
+    0.9793004133800464
+  ],
+  "fraudes_test": 176,
+  "fraudes_perdidos_test": 0,
+  "fraudes_revision_test": 18,
+  "tiempos": [
+    {
+      "modelo": "Naive Bayes",
+      "fraccion": 0.25,
+      "n_train": 1586,
+      "segundos_1000": 0.03018190001603216,
+      "min": 0.028669999970588833,
+      "max": 0.04476239997893572
+    },
+    {
+      "modelo": "KNN",
+      "fraccion": 0.25,
+      "n_train": 1586,
+      "segundos_1000": 0.08881230000406504,
+      "min": 0.08328279998386279,
+      "max": 0.09569440002087504
+    },
+    {
+      "modelo": "Naive Bayes",
+      "fraccion": 0.5,
+      "n_train": 3172,
+      "segundos_1000": 0.019663300015963614,
+      "min": 0.014902800030540675,
+      "max": 0.02073349995771423
+    },
+    {
+      "modelo": "KNN",
+      "fraccion": 0.5,
+      "n_train": 3172,
+      "segundos_1000": 0.07006300002103671,
+      "min": 0.06890369998291135,
+      "max": 0.07612249994417652
+    },
+    {
+      "modelo": "Naive Bayes",
+      "fraccion": 0.75,
+      "n_train": 4758,
+      "segundos_1000": 0.0291268999571912,
+      "min": 0.02437810000265017,
+      "max": 0.04254560003755614
+    },
+    {
+      "modelo": "KNN",
+      "fraccion": 0.75,
+      "n_train": 4758,
+      "segundos_1000": 0.13040870003169402,
+      "min": 0.10532630002126098,
+      "max": 0.20812359999399632
+    },
+    {
+      "modelo": "Naive Bayes",
+      "fraccion": 1.0,
+      "n_train": 6344,
+      "segundos_1000": 0.04623840004205704,
+      "min": 0.04055039997911081,
+      "max": 0.050711499992758036
+    },
+    {
+      "modelo": "KNN",
+      "fraccion": 1.0,
+      "n_train": 6344,
+      "segundos_1000": 0.1586200000019744,
+      "min": 0.1344020999968052,
+      "max": 0.21494169998914003
+    }
+  ],
+  "impacto": {
+    "mensajes_diarios": 6500.0,
+    "automaticos": 670.3125,
+    "revision_humana": 5829.6875,
+    "revision_por_texto_corto": 56.87500000000001,
+    "errores_automaticos": 28.437500000000036,
+    "fraudes_perdidos": 0.0,
+    "errores_mesa_referencia": 1130.365853658537,
+    "carga_equivalente_personas": 8.071875
+  },
+  "nuevos_destinos": {
+    "revision_humana": 1815,
+    "fraude": 225
+  },
+  "nuevos_cortos": 15
+}
